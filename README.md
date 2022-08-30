@@ -10,5 +10,5 @@ which makes censorship pretty difficult.
 - Uses association servers to create user profiles and identify them
 - You can download your profile and upload it to different server
 
-#FAQ
+# FAQ
 **TODO**
