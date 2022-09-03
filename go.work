@@ -1,3 +1,5 @@
 go 1.18
 
 use ./workspaces/threads
+
+use ./workspaces/server
