@@ -16,7 +16,7 @@ Create a new Thread for an identified user, the Thread should be at least 5 char
 
 - id: `UUID`
 - poster_id: `UUID`
-- data: `string`
+- body: `string`
 - images: `string[]`
 - links: `string[]`
 
