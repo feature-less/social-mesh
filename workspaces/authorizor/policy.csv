@@ -1,0 +1,5 @@
+alice, /resource1/*, GET
+alice, /resource1/sub1, POST
+bob, /resource1, *
+bob, /resource1/sub1, GET
+bob, /resource1/sub2, POST
