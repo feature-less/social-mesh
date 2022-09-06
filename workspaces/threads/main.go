@@ -21,7 +21,7 @@ type Config struct {
 }
 
 func main() {
-	log.SetPrefix("[Accounts Service]: ")
+	log.SetPrefix("[Threads Service]: ")
 
 	var err error
 	var httpRouter router.RouterConfig
@@ -51,10 +51,10 @@ func main() {
 	}
 
 	db, err := sqlx.Connect("pgx", viper.GetString("dbUrl"))
-	defer db.Close()
 	if err != nil {
-		log.Fatalf("an unexpected error has occured whil connecting to the database: %v", err)
+		log.Fatalf("Unable to connect to database, make sure your database is reachable or is running: %v", err)
 	}
+	defer db.Close()
 
 	os.Setenv("DATABASE_URL", viper.GetString("dbUrl"))
 	os.Setenv("PORT", viper.GetString("port"))
@@ -67,10 +67,6 @@ func main() {
 	httpRouter.Origin = os.Getenv("ADDRESS") + ":" + os.Getenv("PORT")
 	httpRouter.RootRoute = api.Root
 	worker.HTTP.Addr = os.Getenv("ADDRESS") + ":" + os.Getenv("PORT")
-
-	if err != nil {
-		//	log.Fatal("Unable to connect to database, make sure your database is reachable or is running\n", err)
-	}
 	worker.HTTP.Handler = httpRouter.Set()
 	worker.Spawn()
 }
