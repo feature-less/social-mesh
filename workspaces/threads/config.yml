@@ -1,0 +1,3 @@
+dbUrl: "postgres://postgres:postgres@localhost:5432/postgres?sslmode=disable"
+port: "3000"
+address: "localhost"

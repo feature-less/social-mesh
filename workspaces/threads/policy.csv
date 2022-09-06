@@ -1,0 +1,6 @@
+p, admin, /, *
+p, mod, /, *
+p, member, /, POST
+p, member, /, GET
+p, memeber, /, PUT
+
