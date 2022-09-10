@@ -2,7 +2,6 @@ package probe
 
 import (
 	"io/fs"
-	"io/ioutil"
 	"os"
 )
 
@@ -23,7 +22,7 @@ func (lf *LiveFile) Create() (*os.File, error) {
 	}
 
 	// attempt to create our temporarry file
-	liveFile, err := ioutil.TempFile(lf.Path, lf.BaseName)
+	liveFile, err := os.CreateTemp(lf.Path, lf.BaseName)
 	if err != nil {
 		return nil, err
 	}
