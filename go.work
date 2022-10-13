@@ -5,3 +5,7 @@ use ./workspaces/threads
 use ./workspaces/server
 
 use ./workspaces/authorizor
+
+use ./workspaces/goview
+
+use ./workspaces/delta_css
