@@ -3,12 +3,13 @@ package main
 import (
 	"log"
 	"os"
+	templates "threads/internal/delivery/html"
 	api "threads/internal/delivery/http"
 
 	"server/pkg/router"
 	"server/pkg/service"
 
-	"github.com/casbin/casbin/v2"
+	//"github.com/casbin/casbin/v2"
 	_ "github.com/jackc/pgx/stdlib"
 	"github.com/jmoiron/sqlx"
 	"github.com/spf13/viper"
@@ -27,7 +28,7 @@ func main() {
 	var httpRouter router.RouterConfig
 	var worker service.Service
 
-	enforcer, err := casbin.NewEnforcer("./authorization_model.conf", "./policy.csv")
+	//enforcer, err := casbin.NewEnforcer("./authorization_model.conf", "./policy.csv")
 
 	if err != nil {
 		log.Fatalf(" unhandled casbin enforcer error\n enforcer error: %s", err)
@@ -63,9 +64,11 @@ func main() {
 	log.Println("using database  ", config.DbUrl)
 	log.Println("using port ", config.Port)
 
-	httpRouter.Enforcer = enforcer
+	//httpRouter.Enforcer = enforcer
 	httpRouter.Origin = os.Getenv("ADDRESS") + ":" + os.Getenv("PORT")
-	httpRouter.RootRoute = api.Root
+	httpRouter.ApiRoutes = api.Root
+	httpRouter.TemplateRoutes = templates.Root
+	httpRouter.DB = db
 	worker.HTTP.Addr = os.Getenv("ADDRESS") + ":" + os.Getenv("PORT")
 	worker.HTTP.Handler = httpRouter.Set()
 	worker.Spawn()
