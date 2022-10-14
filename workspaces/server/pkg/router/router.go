@@ -16,15 +16,16 @@ import (
 
 type RouterConfig struct {
 	Enforcer       *casbin.Enforcer
-	RootRoute      func(router chi.Router)
+	ApiRoutes      func(router chi.Router)
+	TemplateRoutes func(router chi.Router)
 	Origin         string
 	AllowedOrigins []string
-	db             *sqlx.DB
+	DB             *sqlx.DB
 }
 
 func (routerConfig *RouterConfig) Set() *chi.Mux {
 
-	if routerConfig.RootRoute == nil {
+	if routerConfig.ApiRoutes == nil {
 		log.Fatal("a root route must be provided")
 	}
 	if routerConfig.Origin == "" {
@@ -53,7 +54,7 @@ func (routerConfig *RouterConfig) Set() *chi.Mux {
 	router.Use(middleware.Recoverer)
 	router.Use(middleware.Throttle(10))
 	router.Use(middleware.Timeout(time.Second * 60))
-	router.Use(passDBToHandlersThroughContext(routerConfig.db))
+	//router.Use(passDBToHandlersThroughContext(routerConfig.DB))
 	if routerConfig.Enforcer != nil {
 		router.Use(authz.Authorizor(routerConfig.Enforcer))
 		// we need to reset log prefix because authz package has its own
@@ -72,9 +73,10 @@ func (routerConfig *RouterConfig) Set() *chi.Mux {
 		writer.Write([]byte("Method is not allowed"))
 	})
 
-	// this should be the only route registered here
+	// these should be the only routes registered here
 	// don't add random routes here
-	router.Route("/", routerConfig.RootRoute)
+	router.Route("/api", routerConfig.ApiRoutes)
+	router.Route("/", routerConfig.TemplateRoutes)
 
 	return router
 }

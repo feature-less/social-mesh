@@ -1,0 +1,29 @@
+button {
+  display: inline-block;
+
+  // Padding, cursor and margins
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: $whitespace-1;
+  padding-bottom: $whitespace-1;
+  margin: 0.1rem;
+  cursor: pointer;
+
+  // theming
+  background-color: var(--color-primary);
+  font-size: $base-size;
+  line-height: $base-lineHeight;
+  word-spacing: $tracking-normal;
+  border-radius: $border-rounded;
+  color: var(--color-background);
+  text-transform: uppercase;
+
+  // animations
+  transition: all 0.4s ease-in-out;
+  &:hover {
+    opacity: 0.85;
+  }
+  &:active {
+    opacity: 0.6 !important;
+  }
+}
