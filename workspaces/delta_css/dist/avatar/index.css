@@ -1,0 +1,98 @@
+:root {
+  --color-primary: #003459;
+  --color-accent: #00a8e8;
+  --color-background: #ffffff;
+  --color-surface: #cad7e3;
+  --color-success: #00e19c;
+  --color-warning: #ffa52e;
+  --color-info: #007ea7;
+  --color-error: #ff2c6f;
+  --color-text: #00171f;
+  --color-disabled: #929292;
+  --color-placeholder: #929292;
+  --color-notification: #ff2c6f;
+}
+
+:root[data-theme=dark] {
+  --color-background: #00171f;
+  --color-text: #ffffff;
+}
+
+/*used to define margins and paddings*/
+/*font size*/
+/*font weight*/
+/*font spacing*/
+button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  border-radius: 0;
+  background: transparent;
+  /**
+  * inherit font & color & text-align from ancestor
+  */
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  /**
+  * Normalize line-height. Cannot be changed from normal in Firefox 4+
+  */
+  line-height: normal;
+  /**
+  * Corrects font smoothing for webkit
+  */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  /**
+  * Corrects inability to style clickable input types in iOS
+  */
+  -webkit-appearance: none;
+  /* Remove excess padding and border in Firefox 4+ */
+  /**
+  * Remove the ugly and style breaking outline
+  */
+}
+button::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+button:focus {
+  outline: none;
+}
+button:active {
+  outline: none;
+}
+
+button {
+  display: inline-block;
+  /**
+     * Padding, cursor and margins
+     */
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  margin: 0.1rem;
+  cursor: pointer;
+  /**
+      * theming
+      */
+  background-color: var(--color-primary);
+  font-size: var(--base-size);
+  line-height: var(--base-lineHeight);
+  font-family: var(--fontFamilies-base);
+  border-radius: var(--borderRadius);
+  color: var(--color-background);
+  /**
+      * animations
+      */
+  transition: all 0.4s;
+}
+button:hover {
+  opacity: 0.85;
+}
+button:active {
+  opacity: 0.6 !important;
+}

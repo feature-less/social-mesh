@@ -1,10 +1,23 @@
 package api
 
 import (
-	get "threads/internal/delivery/http/GET"
+	_ "threads/docs"
 
 	"github.com/go-chi/chi/v5"
+
+	get "threads/internal/delivery/http/GET"
 )
+
+// @title Social-Mesh Threads API
+// @version 1.0
+// @description This is an early development server.
+
+// @contact.name Oussama M. Bouchareb
+// @contact.email commensalism@proton.me
+
+// @license.name AGPL 3.0
+// @host localhost:3000
+// @BasePath /
 
 func Root(router chi.Router) {
 	// TODO: to prevent overfetching
@@ -15,4 +28,5 @@ func Root(router chi.Router) {
 	router.Route("/", func(router chi.Router) { get.Routes(router) })
 	//	router.Put()
 	//	router.Delete()
+
 }

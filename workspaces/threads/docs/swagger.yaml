@@ -1,0 +1,41 @@
+basePath: /
+host: localhost:3000
+info:
+  contact:
+    email: commensalism@proton.me
+    name: Oussama M. Bouchareb
+  description: This is an early development server.
+  license:
+    name: AGPL 3.0
+  title: Social-Mesh Threads API
+  version: "1.0"
+paths:
+  /{id}:
+    get:
+      consumes:
+      - application/json
+      description: get one thread by id
+      operationId: get-one-thread-by-id
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "400":
+          description: We need ID!!
+          schema:
+            type: string
+        "404":
+          description: Can not find ID
+          schema:
+            type: string
+      summary: retrieves a single thread using its id
+swagger: "2.0"
